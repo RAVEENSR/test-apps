@@ -29,13 +29,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.apimgt.api.APIManagementException;
 import org.wso2.carbon.apimgt.api.APIProvider;
 import org.wso2.carbon.apimgt.api.model.*;
 import org.wso2.carbon.apimgt.impl.APIManagerFactory;
 
-@Path("/")
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.wso2.carbon.apimgt.impl.utils.APIUtil;
+
+@Path("/apis")
 public class APIService {
     APIProvider provider;
+    private static final Log log = LogFactory.getLog(APIService.class);
 
     public APIService() {
         try {
@@ -50,21 +59,24 @@ public class APIService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAPI(@PathParam("id") String id) {
-        System.out.println("API Service -- invoking getAPI, API id is: " + id);
-        try{
-        long idNumber = Long.parseLong(id);
-        List<API> apiList = provider.getAllAPIs();
-        StringBuffer sb = new StringBuffer();
-        Iterator<API> iterator =  apiList.iterator();
-            while (iterator.hasNext()){
-                sb.append(iterator.next().getId());
-            }
-           return Response.ok(sb.toString()).build();
-           // return Response.ok(apiList).build();
+        log.info("Retrieving API for API-Id : " + id);
+        String name = id.substring(0, id.indexOf("-"));
+        String version = id.substring(id.indexOf("-") + 1, id.lastIndexOf("-"));
+        String providerName = id.substring(id.lastIndexOf("-") + 1, id.length());
+        APIIdentifier idAPI = new APIIdentifier(providerName, name, version);
+        API apiToReturn = null;
+        String swagger = "";
+        try {
+            apiToReturn = provider.getAPI(idAPI);
+        } catch (APIManagementException e) {
+            log.error("Error while getting API" + e.toString());
         }
-        catch (Exception e){
-            return null;
+        try {
+            swagger = APIUtil.createSwaggerJSONContent(apiToReturn);
+        } catch (APIManagementException e) {
+            log.error("Error while generating swagger JSON from API" + e.toString());
         }
+        return Response.ok(swagger).build();
     }
 
     @POST
