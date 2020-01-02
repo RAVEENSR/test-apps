@@ -15,52 +15,52 @@ Run Sample
 Requests should be send with following format:
 
 HTTP GET - Read file (complete file path)
-https://test.com/t/xxx.xxx/webapps/security-check/directFile?fileName=repository/conf/axis2/axis2.xml
+https://localhost:9443/security-check/directFile?fileName=repository/conf/axis2/axis2.xml
 
 HTTP POST - Create file (complete file path)
-https://test.com/t/xxx.xxx/webapps/security-check/directFile?fileName=repository/conf/axis2/axis2.xml-dummy
+https://localhost:9443/security-check/directFile?fileName=repository/conf/axis2/axis2.xml-dummy
 
 HTTP DELETE - Delete file in Server (complete file path)
-https://test.com/t/xxx.xxx/webapps/security-check/directFile?fileName=repository/conf/axis2/axis2.xml-dummy
+https://localhost:9443/security-check/directFile?fileName=repository/conf/axis2/axis2.xml-dummy
 
 HTTP GET - Read file (file path from carbon server home)
-https://test.com/t/xxx.xxx/webapps/security-check/file?fileName=repository/conf/axis2/axis2.xml
+https://localhost:9443/security-check/file?fileName=repository/conf/axis2/axis2.xml
 
 HTTP POST - Create file (file path from carbon server home)
-https://test.com/t/xxx.xxx/webapps/security-check/file?fileName=repository/conf/axis2/axis2.xml-dummy
+https://localhost:9443/security-check/file?fileName=repository/conf/axis2/axis2.xml-dummy
 
 HTTP DELETE - Delete file in Server (file path from carbon server home)
-https://test.com/t/xxx.xxx/webapps/security-check/file?fileName=repository/conf/axis2/axis2.xml-dummy
+https://localhost:9443/security-check/file?fileName=repository/conf/axis2/axis2.xml-dummy
 
 HTTP GET - Read system property
-https://test.com/t/xxx.xxx/webapps/security-check/systemProperty/java.home
+https://localhost:9443/security-check/systemProperty/java.home
 
 HTTP POST - Copy files in server using carbon Utility methods
-https://test.com/t/xxx.xxx/webapps/security-check/fileCopy?source=repository/conf/axis2/axis2.xml&destination=repository/conf/axis2/axis2.xml-dummy
+https://localhost:9443/security-check/fileCopy?source=repository/conf/axis2/axis2.xml&destination=repository/conf/axis2/axis2.xml-dummy
 
 HTTP POST - Delete files in server using carbon Utils
-https://test.com/t/xxx.xxx/webapps/security-check/fileDelete?path=repository/conf/axis2/axis2.xml_PT
+https://localhost:9443/security-check/fileDelete?path=repository/conf/axis2/axis2.xml_PT
 
 HTTP POST - Get registryDBConfig as string
-https://test.com/t/xxx.xxx/webapps/security-check/registryDBConfig
+https://localhost:9443/security-check/registryDBConfig
 
 HTTP POST - Get userManagerDBConfig config as string
-https://test.com/t/xxx.xxx/webapps/security-check/userManagerDBConfig
+https://localhost:9443/security-check/userManagerDBConfig
 
 HTTP GET - Get network configs as string
-https://test.com/t/xxx.xxx/webapps/security-check/networkConfigs
+https://localhost:9443/security-check/networkConfigs
 
 HTTP GET - Get server configuration as string
-https://test.com/t/xxx.xxx/webapps/security-check/serverConfiguration
+https://localhost:9443/security-check/serverConfiguration
 
 HTTP POST - Get network configs as string
-https://test.com/t/xxx.xxx/webapps/security-check/networkConfigs?hostName=test.org&mgtHostName=test1.org
+https://localhost:9443/security-check/networkConfigs?hostName=test.org&mgtHostName=test1.org
 
 HTTP POST - Generate OOM
-https://test.com/t/xxx.xxx/webapps/security-check/memory?operation=oom
+https://localhost:9443/security-check/memory?operation=oom
 
 HTTP POST - Generate high CPU
-https://test.com/t/xxx.xxx/webapps/security-check/memory?operation=cpu
+https://localhost:9443/security-check/memory?operation=cpu
 
 HTTP POST - Generate system call
-https://test.com/t/xxx.xxx/webapps/security-check/memory?operation=kill
+https://localhost:9443/security-check/memory?operation=kill
